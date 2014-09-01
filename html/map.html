@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1">
+		<title>GPS Area Plotting Application</title>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+		    html { height: 100% }
+		    body { height: 100%; margin: 0; padding: 0 }
+		    #map-canvas { height: 100% }
+	    </style>
+
+	</head>
+	<body>
+		<div id='map-canvas'></div>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgjmU4CKdokXzRs3uT_2NOSA9mXZe7R8c"></script>
+		<script>
+		function initialize(){
+			var mapOptions = {
+				zoom: 5,
+				center: new google.maps.LatLng(24.886, -70.268)
+			}
+
+			var area;
+
+			var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
+
+			// Define boundry path for polygon
+			var areaCoords = [
+				new google.maps.LatLng(25.774, -80.190),
+				new google.maps.LatLng(18.466, -66.118),
+				new google.maps.LatLng(32.321, -64.757),
+				new google.maps.LatLng(25.774, -80.190)
+			]
+
+			area = new google.maps.Polygon({
+				paths: areaCoords,
+				strokeColor: '#00FF00',
+				fillColor: '#00FF00',
+				strokeOpacity: 0.8,
+				fillOpacity: 0.35,
+				strokeWeight: 2
+			})
+
+			area.setMap(map)
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+	</body>
+</html>
